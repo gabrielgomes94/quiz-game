@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Persistence.unity
+    guid: e65573896cb6a2e4bb4008fcafb57889
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: a2c708d1dc9019747a2dc7461e4c1954
+  - enabled: 1
+    path: Assets/Scenes/MenuScreen.unity
+    guid: 29e45c138f04c5f47855c651c168bb7a
   m_configObjects: {}
