@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerData : MonoBehaviour
+[System.Serializable]
+public class AnswerData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  public string answerText;
+  public bool isCorrect;
 }
