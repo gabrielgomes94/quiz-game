@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
   public Text questionText;
   public Text scoreDisplayText;
+  public Text timeRemainingDisplayText;
   public SimpleObjectPool answerButtonObjectPool;
   public Transform answerButtonParent;
   public GameObject questionDisplay;
@@ -93,9 +94,27 @@ public class GameController : MonoBehaviour
     roundEndDisplay.SetActive(true);
   }
 
+  public void ReturnToMenu()
+  {
+    SceneManager.LoadScene("MenuScreen");
+  }
+
+  private void UpdateTimeRemainingDisplay()
+  {
+    timeRemainingDisplayText.text = "Time: " + Mathf.Round(timeRemaining).ToString();
+  }
+  
   // Update is called once per frame
   void Update()
   {
-      
+    if ( isRoundActive)
+    {
+      timeRemaining -= Time.deltaTime;
+      UpdateTimeRemainingDisplay();
+      if ( timeRemaining <= 0f )
+      {
+        EndRound();
+      }
+    }
   }
 }
