@@ -8,8 +8,11 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour
 {
   public Text questionText;
+  public Text scoreDisplayText;
   public SimpleObjectPool answerButtonObjectPool;
   public Transform answerButtonParent;
+  public GameObject questionDisplay;
+  public GameObject roundEndDisplay;
 
   private DataController dataController;
   private RoundData currentRoundData;
@@ -60,6 +63,34 @@ public class GameController : MonoBehaviour
       answerButtonObjectPool.ReturnObject(answerButtonGameObjects[0]);
       answerButtonGameObjects.RemoveAt(0);
     }
+  }
+
+  public void AnswerButtonClicked(bool isCorrect)
+  {
+    if(isCorrect)
+    {
+      playerScore  += currentRoundData.pointsAddedForCorrectAnswer;
+      scoreDisplayText.text = "Score: " + playerScore.ToString();
+    }
+
+    if (questionPool.Length > questionIndex + 1)
+    {
+      questionIndex++;
+      ShowQuestion();
+    }
+    else 
+    {
+      EndRound();
+    }
+  }
+
+
+  public void EndRound()
+  {
+    isRoundActive = false;
+
+    questionDisplay.SetActive(false);
+    roundEndDisplay.SetActive(true);
   }
 
   // Update is called once per frame
