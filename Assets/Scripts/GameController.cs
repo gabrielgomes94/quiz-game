@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
   public Transform answerButtonParent;
   public GameObject questionDisplay;
   public GameObject roundEndDisplay;
+  public Text highScoreDisplay;
 
   private DataController dataController;
   private RoundData currentRoundData;
@@ -89,6 +90,8 @@ public class GameController : MonoBehaviour
   public void EndRound()
   {
     isRoundActive = false;
+    dataController.SubmitNewPlayerScore(playerScore);
+    highScoreDisplay.text = dataController.GetHighestPlayerScore().ToString();
 
     questionDisplay.SetActive(false);
     roundEndDisplay.SetActive(true);
@@ -111,6 +114,7 @@ public class GameController : MonoBehaviour
     {
       timeRemaining -= Time.deltaTime;
       UpdateTimeRemainingDisplay();
+      
       if ( timeRemaining <= 0f )
       {
         EndRound();
